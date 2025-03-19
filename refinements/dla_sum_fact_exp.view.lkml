@@ -9,19 +9,20 @@ view: +dla_sum_fact_exp {
   }
 
   measure: total_activations {
-    type: sum
+    type: count
     filters: [activity_cd: "D%"]
     value_format_name: decimal_0
+
 
   }
 
   measure: total_deactivations {
-    type: sum
+    type: count
     filters: [activity_cd: "AC"]
     value_format_name: decimal_0
   }
   measure: net_adds {
-    description: "Nubmer of Net Adds"
+    description: "Number of Net Adds"
     type: number
     sql: ${total_activations} - ${total_deactivations} ;;
     value_format_name: decimal_0
