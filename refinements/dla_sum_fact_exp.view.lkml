@@ -10,7 +10,7 @@ view: +dla_sum_fact_exp {
 
   measure: total_activations {
     type: count
-    filters: [activity_cd: "D%"]
+    filters: [activity_cd: "AC"]
     value_format_name: decimal_0
 
 
@@ -18,7 +18,7 @@ view: +dla_sum_fact_exp {
 
   measure: total_deactivations {
     type: count
-    filters: [activity_cd: "AC"]
+    filters: [activity_cd: "D%"]
     value_format_name: decimal_0
   }
   measure: net_adds {
