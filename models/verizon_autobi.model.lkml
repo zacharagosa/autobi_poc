@@ -44,7 +44,12 @@ explore: cust_acct_line_exp {}
 explore: acss_repeat_call_detail_exp {}
 
 explore: dla_sum_fact_exp {
+  label: "Daily Activity (dla_sum_fact_exp)"
   description: "This table provides a summary of daily activity for customers including activations, deactivations etc"
+  join: vz2_segmt_dim_ref {
+    relationship: many_to_one
+    sql_on: ${dla_sum_fact_exp.vz2_segmt_cd} = ${vz2_segmt_dim_ref.vz2_segmt_cd};;
+  }
 }
 
 explore: icm_summary_fact_exp {}
