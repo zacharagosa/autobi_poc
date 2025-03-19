@@ -21,6 +21,7 @@ view: +dla_sum_fact_exp {
     value_format_name: decimal_0
   }
   measure: net_adds {
+    description: "Nubmer of Net Adds"
     type: number
     sql: ${total_activations} - ${total_deactivations} ;;
     value_format_name: decimal_0

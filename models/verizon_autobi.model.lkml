@@ -3,6 +3,7 @@ connection: "looker-private-demo"
 
 # include all the views
 include: "/views/**/*.view.lkml"
+include: "/refinements/*"
 
 
 # Datagroups define a caching policy for an Explore. To learn more,
