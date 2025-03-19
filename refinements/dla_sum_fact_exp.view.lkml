@@ -2,6 +2,12 @@ include: "/views/dla_sum_fact_exp.view.lkml"
 
 view: +dla_sum_fact_exp {
 
+  dimension: primary_key {
+    type: number
+    primary_key: yes
+    sql: ROW_NUMBER()over ;;
+  }
+
   measure: total_activations {
     type: sum
     filters: [activity_cd: "D%"]
