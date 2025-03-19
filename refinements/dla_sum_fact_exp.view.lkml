@@ -12,14 +12,16 @@ view: +dla_sum_fact_exp {
     type: count
     filters: [activity_cd: "AC"]
     value_format_name: decimal_0
-
-
   }
 
   measure: total_deactivations {
     type: count
     filters: [activity_cd: "D%"]
     value_format_name: decimal_0
+  }
+  measure: total_voluntary_disconnects {
+    type: count
+    filters: [voluntary_disconnects: ">0"]
   }
   measure: net_adds {
     description: "Number of Net Adds"
