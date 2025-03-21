@@ -29,6 +29,10 @@ view: +dla_sum_fact_exp {
     sql: ${total_activations} - ${total_deactivations} ;;
     value_format_name: decimal_0
   }
+
+  dimension: data_tier {
+
+  }
   dimension: prepaid_ind {
     type: yesno
     sql: ${TABLE}.prepaid_ind ;;
