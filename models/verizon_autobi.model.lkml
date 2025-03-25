@@ -59,6 +59,8 @@ explore: dla_sum_fact_exp {
 }
 
 explore: icm_summary_fact_exp {
+  label: "Call in Rate Analysis"
+  description: "Customer call related information with IVR agent's details .This table contains metrics related to Enterprise Call Center Reporting (eccr) interactions. It provides information on call center center (ctr) performance, including local queue time, hold time, and delay time."
   join: surge_callers {
     relationship: one_to_one
     sql_on: ${icm_summary_fact_exp.acss_call_id} = ${surge_callers.acss_call_id} ;;
