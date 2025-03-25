@@ -23,9 +23,15 @@ view: +icm_summary_fact_exp {
     type: count
   }
 
-  measure: total_talk_time {
+  measure: total_talk_time_seconds {
     type: sum
     sql: ${handle_tm_seconds} ;;
+  }
+
+  measure: average_talk_time_seconds {
+    type: average
+    sql: ${handle_tm_seconds} ;;
+    value_format_name: decimal_0
   }
 
   measure: abandoned_call_count{
