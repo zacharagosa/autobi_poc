@@ -23,6 +23,11 @@ view: +icm_summary_fact_exp {
     type: count
   }
 
+  measure: total_talk_time {
+    type: sum
+    sql: ${handle_tm_seconds} ;;
+  }
+
   measure: abandoned_call_count{
     type: count
     filters: [abandons_cnt: "1"]
