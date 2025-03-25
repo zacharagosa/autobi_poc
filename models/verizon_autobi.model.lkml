@@ -38,7 +38,12 @@ explore: acct_bill_exp {
 
 explore: device_dp_map {}
 
-explore: churn_sum_fact_exp {}
+explore: churn_sum_fact_exp {
+  join: equip_sum_fact_exp {
+    relationship: many_to_one
+    sql_on: ${churn_sum_fact_exp.cust_id} = ${equip_sum_fact_exp.cust_id} ;;
+  }
+}
 
 explore: cust_acct_line_exp {}
 
