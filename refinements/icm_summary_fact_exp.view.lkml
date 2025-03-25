@@ -67,7 +67,7 @@ view: surge_callers {
               FROM
                   `aragosalooker.verizon_autobi.icm_summary_fact_exp`  as a
               WHERE a.cust_id IS NOT NULL
-              limit 10 ;;
+             ;;
   }
 
   measure: surge_call_count {
