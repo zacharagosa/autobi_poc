@@ -58,7 +58,12 @@ explore: dla_sum_fact_exp {
   }
 }
 
-explore: icm_summary_fact_exp {}
+explore: icm_summary_fact_exp {
+  join: surge_callers {
+    relationship: one_to_one
+    sql_on: ${icm_summary_fact_exp.acss_call_id} = ${surge_callers.acss_call_id} ;;
+  }
+}
 
 explore: fixed_5g_summary_fact_exp {}
 

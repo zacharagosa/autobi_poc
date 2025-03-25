@@ -49,3 +49,60 @@ view: +icm_summary_fact_exp {
 
 
  }
+
+
+
+view: surge_callers {
+  derived_table: {
+    sql: SELECT
+
+                  a.acss_call_id,
+
+                  ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(DATE(a.call_answer_dt), MONTH), a.cust_id, a.mtn ORDER BY a.call_answer_dt, a.call_answer_tm ASC) AS call_num,
+                  DATE_DIFF(
+                      CAST(MAX(a.call_answer_dt) OVER (PARTITION BY DATE_TRUNC(DATE(a.call_answer_dt), MONTH), a.cust_id, a.mtn ORDER BY a.call_answer_dt, a.call_answer_tm ASC) AS DATE),
+                      CAST(MIN(a.call_answer_dt) OVER (PARTITION BY DATE_TRUNC(DATE(a.call_answer_dt), MONTH), a.cust_id, a.mtn ORDER BY a.call_answer_dt, a.call_answer_tm ASC) AS DATE),
+                      DAY
+                  ) AS repeat_calls
+              FROM
+                  `aragosalooker.verizon_autobi.icm_summary_fact_exp`  as a
+              WHERE a.cust_id IS NOT NULL
+              limit 10 ;;
+  }
+
+  measure: surge_call_count {
+    type: count
+    drill_fields: [detail*]
+    filters: [is_surge_caller: "Yes"]
+  }
+
+  dimension: acss_call_id {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.acss_call_id ;;
+  }
+
+  dimension: call_num {
+    type: number
+    sql: ${TABLE}.call_num ;;
+  }
+
+  dimension: repeat_calls {
+    type: number
+    sql: ${TABLE}.repeat_calls ;;
+  }
+
+  dimension: is_surge_caller {
+    type: yesno
+    sql: ${call_num} >= 3 and ${repeat_calls} between 0 and 7  ;;
+  }
+
+  set: detail {
+    fields: [
+      acss_call_id,
+      call_num,
+      repeat_calls
+    ]
+  }
+}
