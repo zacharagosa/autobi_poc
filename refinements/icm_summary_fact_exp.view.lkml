@@ -24,6 +24,16 @@ view: +icm_summary_fact_exp {
     filters: [acss_call_id: "-NULL"]
   }
 
+  dimension: transfer_flag {
+    type: yesno
+    sql: ${TABLE}.transfer_flag = 1 ;;
+  }
+
+  measure: call_transfer_total {
+    type: count_distinct
+    filters: [acss_call_id: "-NULL", transfer_flag: "Yes"]
+  }
+
   measure: total_talk_time_seconds {
     type: sum
     sql: ${handle_tm_seconds} ;;
