@@ -93,9 +93,9 @@ view: repeat_callers {
     }
   }
 
-  measure: count_of_first_time_callers_within_30d{
-    label: "Count with first time callers within 30 Days"
-    description: "Whether the customer is calling for the first time in 30 days"
+  measure: count_of_first_time_calls_within_30d{
+    label: "Count of Calls with First Time callers within 30 Days"
+    description: "Number of Calls from customers who haven't called in the last 30 days"
     type: count_distinct
     sql: ${acss_call_id} ;;
     view_label: "Repeat Call Facts"
@@ -105,6 +105,20 @@ view: repeat_callers {
       value: "Yes"
     }
   }
+
+  measure: count_of_first_time_callers_within_30d{
+    label: "Count Customers who haven't called within 30 Days"
+    description: "Number of distinct customers who haven't called in the last 30 days"
+    type: count_distinct
+    sql: ${icm_summary_fact_exp.cust_id} ;;
+    view_label: "Repeat Call Facts"
+
+    filters: {
+      field: repeat_calls_within_30d
+      value: "Yes"
+    }
+  }
+
 
   measure: 30_day_repeat_call_rate {
     description: "The percentage of customers who purchase again within 30 days. Measures buying propensity."
