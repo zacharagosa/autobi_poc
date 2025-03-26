@@ -21,6 +21,7 @@ view: +icm_summary_fact_exp {
 
   measure: call_count {
     type: count
+    filters: [acss_call_id: "-NULL"]
   }
 
   measure: total_talk_time_seconds {
@@ -84,6 +85,7 @@ view: surge_callers {
   measure: surge_call_count {
     type: count
     drill_fields: [detail*]
+    description: "This is the total amount of calls that are from surge callers. A surge caller is defined by callers who call >2 times"
     filters: [is_surge_caller: "Yes"]
   }
 
