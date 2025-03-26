@@ -116,6 +116,7 @@ view: surge_callers {
     sql: ${TABLE}.repeat_calls ;;
   }
 
+
   dimension: is_surge_caller {
     type: yesno
     sql: ${call_num} >= 3 and ${repeat_calls} between 0 and 7  ;;

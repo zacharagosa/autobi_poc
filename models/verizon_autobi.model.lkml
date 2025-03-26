@@ -4,6 +4,7 @@ connection: "looker-private-demo"
 # include all the views
 include: "/views/**/*.view.lkml"
 include: "/refinements/*"
+include: "/derived_tables/*"
 
 
 # Datagroups define a caching policy for an Explore. To learn more,
@@ -43,6 +44,7 @@ explore: churn_sum_fact_exp {
     relationship: many_to_one
     sql_on: ${churn_sum_fact_exp.cust_id} = ${equip_sum_fact_exp.cust_id} ;;
   }
+
 }
 
 explore: cust_acct_line_exp {}
@@ -65,6 +67,11 @@ explore: icm_summary_fact_exp {
     relationship: one_to_one
     sql_on: ${icm_summary_fact_exp.acss_call_id} = ${surge_callers.acss_call_id} ;;
   }
+
+  join: repeat_callers {
+    relationship: many_to_one
+    sql_on: ${icm_summary_fact_exp.acss_call_id} = ${repeat_callers.acss_call_id} ;;
+}
 }
 
 explore: fixed_5g_summary_fact_exp {}
