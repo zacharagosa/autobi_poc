@@ -17,17 +17,6 @@ datagroup: verizon_autobi_default_datagroup {
 
 persist_with: verizon_autobi_default_datagroup
 
-# Explores allow you to join together different views (database tables) based on the
-# relationships between fields. By joining a view into an Explore, you make those
-# fields available to users for data analysis.
-# Explores should be purpose-built for specific use cases.
-
-# To see the Explore you’re building, navigate to the Explore menu and select an Explore under "Verizon Autobi"
-
-# To create more sophisticated Explores that involve multiple views, you can use the join parameter.
-# Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
-# Each joined view also needs to define a primary key.
-
 explore: cust_acct_line_pplan_exp {}
 
 explore: device_usage_age_exp {}
@@ -66,6 +55,10 @@ explore: icm_summary_fact_exp {
   join: surge_callers {
     relationship: one_to_one
     sql_on: ${icm_summary_fact_exp.acss_call_id} = ${surge_callers.acss_call_id} ;;
+  }
+  join: transferred_calls {
+    relationship: many_to_one
+    sql_on: ${icm_summary_fact_exp.ivr_call_id} = ${transferred_calls.ivr_call_id} ;;
   }
 
   join: repeat_callers {

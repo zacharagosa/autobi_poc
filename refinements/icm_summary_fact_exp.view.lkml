@@ -20,19 +20,16 @@ view: +icm_summary_fact_exp {
   }
 
   measure: call_count {
-    type: count
+    description: "The Number of Calls - Counting the Distinct ACSS Call ID"
+    type: count_distinct
+    sql: ${acss_call_id} ;;
     filters: [acss_call_id: "-NULL"]
   }
 
   dimension: transfer_flag {
-    type: yesno
-    sql: ${TABLE}.transfer_flag = 1 ;;
+    hidden: yes
   }
 
-  measure: call_transfer_total {
-    type: count_distinct
-    filters: [acss_call_id: "-NULL", transfer_flag: "Yes"]
-  }
 
   measure: total_talk_time_seconds {
     type: sum
