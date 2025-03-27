@@ -40,9 +40,11 @@ view: +icm_summary_fact_exp {
   }
 
   measure: average_talk_time_seconds {
+    description: "Average Call Duration - Average call time calculated in seconds"
     type: average
     sql: ${handle_tm_seconds} ;;
     value_format_name: decimal_0
+    filters: [call_answered_yes_no: "Yes"]
   }
 
   measure: abandoned_call_count{
