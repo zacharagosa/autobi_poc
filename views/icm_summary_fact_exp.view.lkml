@@ -94,7 +94,7 @@ view: icm_summary_fact_exp {
   dimension_group: call_answer_dt {
     type: time
     description: "The call answer date is the date on which the call was answered."
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, quarter, year, month_name, month_num]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.call_answer_dt ;;
