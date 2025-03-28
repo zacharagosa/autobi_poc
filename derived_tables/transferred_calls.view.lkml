@@ -24,7 +24,7 @@ view: transferred_calls {
 
   measure: transfer_call_total {
     type: count_distinct
-    sql: ${transfer_call_count} ;;
+    sql: ${ivr_call_id} ;;
     filters: [ivr_call_id: "-NULL", call_transfer_yes_no: "Yes"]
   }
   dimension: ivr_call_id {

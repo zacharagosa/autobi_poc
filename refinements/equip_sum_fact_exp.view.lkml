@@ -13,10 +13,27 @@ view: +equip_sum_fact_exp {
     description: "A calculated field that determines if a record represents a device upgrade based on the specified criteria."
   }
 
+  dimension_group: invc_dt {
+    type: time
+    label: "Invoice"
+    description: "The date the invoice was created."
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: date(${TABLE}.invc_dt) ;;
+  }
+
+
   dimension: primary_key {
     type: number
     primary_key: yes
     sql: ${cust_id} || ${cust_line_seq_id}  ;;
+  }
+
+  measure: total_sales {
+    type: number
+    sql: ${sales_qty} ;;
+    value_format_name: usd
   }
 
   # dimension: customer_duration {

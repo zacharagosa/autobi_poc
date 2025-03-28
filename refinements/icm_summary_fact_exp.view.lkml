@@ -8,7 +8,6 @@ view: +icm_summary_fact_exp {
     sql: ROW_NUMBER()over ;;
   }
 
-
   dimension: call_answered_yes_no {
     type: yesno
     sql: ${answered_cnt} = 1 ;;
@@ -29,7 +28,6 @@ view: +icm_summary_fact_exp {
   dimension: transfer_flag {
     hidden: yes
   }
-
 
   measure: total_talk_time_seconds {
     type: sum
@@ -67,11 +65,7 @@ view: +icm_summary_fact_exp {
     sql: ${time_to_aband_seconds} ;;
     filters: [abandons_cnt: "1"]
   }
-
-
  }
-
-
 
 view: surge_callers {
   derived_table: {

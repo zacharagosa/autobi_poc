@@ -19,7 +19,7 @@ persist_with: verizon_autobi_default_datagroup
 
 explore: cust_acct_line_pplan_exp {}
 
-explore: device_usage_age_exp {}
+explore: device_usage_age_exp {hidden:yes}
 
 explore: acct_bill_exp {
   description: "This table contains Customer bill information at account level"
@@ -71,7 +71,17 @@ explore: fixed_5g_summary_fact_exp {}
 
 explore: price_plan {}
 
-explore: equip_sum_fact_exp {}
+explore: equip_sum_fact_exp {
+  label: "Sales Order Analysis"
+  join: device_dp_map {
+    relationship: many_to_one
+    sql_on: ${device_dp_map.prod_nm} = ${equip_sum_fact_exp.device_prod_nm} ;;
+  }
+  join: churn_sum_fact_exp {
+    relationship: many_to_many
+    sql_on: ${churn_sum_fact_exp.cust_id} = ${equip_sum_fact_exp.cust_id} ;;
+  }
+}
 
 explore: ivr_call_exp {}
 

@@ -502,7 +502,7 @@ view: equip_sum_fact_exp {
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.invc_dt ;;
+    sql: date(${TABLE}.invc_dt) ;;
   }
 
   dimension: invc_line_num {
