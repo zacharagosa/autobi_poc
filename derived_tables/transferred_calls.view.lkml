@@ -2,6 +2,7 @@ include: "/models/verizon_autobi.model.lkml"
 
 view: transferred_calls {
   derived_table: {
+    persist_for: "24 hours"
     explore_source: icm_summary_fact_exp {
       column: call_count {}
       column: ivr_call_id {}

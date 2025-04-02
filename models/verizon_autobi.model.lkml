@@ -19,7 +19,7 @@ persist_with: verizon_autobi_default_datagroup
 
 explore: cust_acct_line_pplan_exp {}
 
-explore: device_usage_age_exp {hidden:yes}
+explore: device_usage_age_exp { }
 
 explore: acct_bill_exp {
   description: "This table contains Customer bill information at account level"
